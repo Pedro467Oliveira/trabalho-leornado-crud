@@ -1,13 +1,10 @@
-import * as userService from '../services/userService.js';
+import { getUsersService } from "../services/userService.js";
 
-export async function createUser(req, res) {
+export async function getUsersController(req, res) {
   try {
-    const result = await userService.createUserService(req.body);
-    res.status(201).location(`/usuario/${result.id}`).json({
-      id: result.id,
-      message: 'Usuário criado com sucesso.'
-    });
-  } catch (err) {
-    res.status(err.status || 500).json({ error: err.message });
+    const users = await getUsersService(req.db);
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao buscar usuários." });
   }
 }

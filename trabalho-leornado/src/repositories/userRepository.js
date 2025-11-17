@@ -21,3 +21,7 @@ export async function findUserByEmail(email) {
   await db.close();
   return u;
 }
+
+export async function findAllUsers(db) {
+  return await db.all("SELECT * FROM usuario");
+}

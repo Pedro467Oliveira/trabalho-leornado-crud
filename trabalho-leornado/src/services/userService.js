@@ -25,3 +25,9 @@ export async function createUserService(data) {
 
   return await userRepo.createUser({ login, email, senha, foto });
 }
+
+import { findAllUsers } from "../repositories/userRepository.js";
+
+export async function getUsersService(db) {
+  return await findAllUsers(db);
+}
